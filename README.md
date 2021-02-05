@@ -6,9 +6,13 @@
 ## Usage:
 *Foo*
 
+## Development Information:
+To run frontend: npm run start
+To run backend: npm run start-api-windows OR start-api-mac
+
 ## Conventions:
 Branches:
-  - Most changes can be commited directly to main
+  - Most changes can be committed directly to main
   - Risky changes should be done on a feature branch and then merged to main
 
  Commits naming convention:
