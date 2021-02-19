@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-api-windows": "cd .. && cd api && venv\\Scripts\\activate.bat && flask run",
+    "start-api": "cd .. && cd api && venv\\Scripts\\activate.bat && flask run",
     "start-api-mac": "",
     "build": "react-scripts build",
     "test": "react-scripts test",

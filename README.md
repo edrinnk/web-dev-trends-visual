@@ -8,7 +8,7 @@
 
 ## Development Information:
 To run frontend: npm run start
-To run backend: npm run start-api-windows OR start-api-mac
+To run backend: npm run start-api OR start-api-mac
 
 ## Conventions:
 Branches:
