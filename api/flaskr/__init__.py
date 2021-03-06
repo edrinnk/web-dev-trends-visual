@@ -1,9 +1,10 @@
 import os
 from flask import Flask
-import time
+import time as time
+from .DataCleaner import DataCleaner
 
 def create_app(test_config=None):
-    # CREATE & CONFIG FLASK:
+    # CONFIGURE FLASK =>
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
@@ -23,12 +24,21 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # API(s):
+    # IGNORE =>
+    print('')
+
+    # API =>
     @app.route('/time')
     def hello():
         current_time = time.time()
+        print(current_time)
         return {'time': current_time}
 
-    # DATA-SET SETUP:
+    # DATA-SET SETUP =>
+
+
+    # TESTING STUFF =>
+    temp = DataCleaner.get_unique_values(['bob', 'bob', 'rob', 'so', 'so', 'so', 'lemon'])
+    print('@TESTING EXTERNAL MODULE: ' + str(temp))
 
     return app
