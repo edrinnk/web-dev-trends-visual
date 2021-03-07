@@ -25,9 +25,18 @@ class DataCleaner:
         new_series = pd.Series([item for item in new_series if list(item.keys()) == keys_to_match])
         return new_series
 
+    # return a list of unique values in a dataframe
+    @staticmethod
+    def get_unique_values_from_dataframe(df):
+        unique_from_each_column = []
+        for column in list(df.columns):
+            l = list(df[column].unique())
+            unique_from_each_column.extend(l)
+        result = np.unique(unique_from_each_column).tolist()
+        return [i for i in result if i != 'nan']
+
     # return a list of unique values in a list/series/array
     @staticmethod
-    def get_unique_values(array_like):
+    def get_unique_values_from_array(array_like):
         srs = array_like if type(array_like) is pd.Series else pd.Series(array_like)
         return list(srs.unique())
-        

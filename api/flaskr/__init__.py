@@ -2,6 +2,7 @@ import os
 from flask import Flask
 import time as time
 from .DataCleaner import DataCleaner
+from .SourceDataPath import SourceDataPath
 
 def create_app(test_config=None):
     # CONFIGURE FLASK =>
@@ -38,7 +39,6 @@ def create_app(test_config=None):
 
 
     # TESTING STUFF =>
-    temp = DataCleaner.get_unique_values(['bob', 'bob', 'rob', 'so', 'so', 'so', 'lemon'])
-    print('@TESTING EXTERNAL MODULE: ' + str(temp))
+    print('@TESTING EXTERNAL MODULE: ' + SourceDataPath.get_2016())
 
     return app
