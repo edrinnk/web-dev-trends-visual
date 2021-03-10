@@ -3,21 +3,10 @@ import numpy as np
 from .DataCleaner import DataCleaner
 
 class DataSectionExtractor:
-
-    _singleton = None # TODO if this is only used x1 then no need for singleton!!!
-
-    def __new__(cls, *args, **kwargs):
-        if not cls._singleton:
-            cls._singleton = super(DataSectionExtractor, cls).__new__(cls, *args, **kwargs)
-        return cls._singleton
-
-    def __init__(self):
-        pass
-
-    # TODO change all to @staticmethod
     
     # tools
-    def get_tools_dataframe(self, df):
+    @staticmethod
+    def get_tools_dataframe(df):
         tools_series = DataCleaner.clear_nan_and_unequal_dictionaries_from_series(df.tools)
         tools_dataframe = pd.DataFrame(list(tools_series))
 
@@ -29,7 +18,8 @@ class DataSectionExtractor:
         return tools_dataframe
 
     # opinions
-    def get_opinions_dataframe(self, df):
+    @staticmethod
+    def get_opinions_dataframe(df):
         opinions_series = DataCleaner.clear_nan_and_unequal_dictionaries_from_series(df.opinions)
 
         opinions_dataframe = pd.DataFrame(list(opinions_series))
@@ -38,7 +28,8 @@ class DataSectionExtractor:
         return opinions_dataframe
 
     # years
-    def get_years_of_experience(self, df):
+    @staticmethod
+    def get_years_of_experience(df):
         # INFO known unique options: ['2_5', '10_20', '1_2', '5_10', 'less_than_1', 'more_than_20']
         user_info_series = DataCleaner.clear_nan_and_unequal_dictionaries_from_series(df.user_info)
         user_info_dataframe = pd.DataFrame(list(user_info_series))
@@ -48,7 +39,8 @@ class DataSectionExtractor:
         return years_of_experience_list
 
     # happiness
-    def get_happiness_dataframe(self, df):
+    @staticmethod
+    def get_happiness_dataframe(df):
         happiness_series = DataCleaner.clear_nan_and_unequal_dictionaries_from_series(df.happiness)
 
         happiness_dataframe = pd.DataFrame(list(happiness_series))
@@ -59,7 +51,8 @@ class DataSectionExtractor:
         return happiness_dataframe
 
     # text editors
-    def get_text_editors(self, df):
+    @staticmethod
+    def get_text_editors(df):
         other_tools_series = DataCleaner.clear_nan_and_unequal_dictionaries_from_series(df.other_tools)
         other_tools_dataframe = pd.DataFrame(list(other_tools_series))
 
@@ -71,7 +64,8 @@ class DataSectionExtractor:
         return text_editors_list
 
     # countries
-    def get_countries(self, df):
+    @staticmethod
+    def get_countries(df):
         user_info_series = DataCleaner.clear_nan_and_unequal_dictionaries_from_series(df.user_info)
         user_info_dataframe = pd.DataFrame(list(user_info_series))
 

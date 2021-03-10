@@ -1,8 +1,8 @@
 import os
-from flask import Flask
+from flask import Flask, json, Response
 import time as time
-from .DataCleaner import DataCleaner
-from .SourceDataPath import SourceDataPath
+from .Finder import Finder
+import pandas as pd
 
 def create_app(test_config=None):
     # CONFIGURE FLASK =>
@@ -10,6 +10,7 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+        DEBUG=True # TEST
     )
 
     if test_config is None:
@@ -25,8 +26,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # IGNORE =>
     print('')
+
+    # DATA SETUP =>
+    # TODO do an initial contact api call that triggers starting data setup???
+    finder = Finder()
 
     # API =>
     @app.route('/time')
@@ -35,10 +39,17 @@ def create_app(test_config=None):
         print(current_time)
         return {'time': current_time}
 
-    # DATA-SET SETUP =>
-
-
-    # TESTING STUFF =>
-    print('@TESTING EXTERNAL MODULE: ' + SourceDataPath.get_2016())
+    @app.route('/exampleJson')
+    def example1():
+        data = finder.get_raw_dataframe(2019)
+        data = data['browser'].to_dict()
+        # response = app.response_class
+        response = Response(
+            response = json.dumps(data),
+            status = 200,
+            mimetype = 'application/json'
+        )
+        return response
 
     return app
+    

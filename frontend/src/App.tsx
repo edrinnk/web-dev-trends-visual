@@ -5,10 +5,18 @@ import './App.css';
 function App() {
 
   // test api
-  const [currentTime, setCurrentTime] = useState(0);
+  // const [currentTime, setCurrentTime] = useState(0);
+  // useEffect(() => {
+  //   fetch('/time').then(response => response.json()).then(data => {
+  //     setCurrentTime(data.time);
+  //   })
+  // }, []);
+
+  const [exampleJson, setExampleJson] = useState(0);
   useEffect(() => {
-    fetch('/time').then(response => response.json()).then(data => {
-      setCurrentTime(data.time);
+    fetch('/exampleJson').then(response => response.json()).then(data => {
+      // setExampleJson(data.response);
+      setExampleJson(data);
     })
   }, []);
 
@@ -29,7 +37,7 @@ function App() {
         </a>
 
         {/* test api */}
-        <p>The current time is: {currentTime}</p>
+        {/* <p>The current time is: {currentTime}</p> */}
 
       </header>
     </div>
